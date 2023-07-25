@@ -9,10 +9,11 @@ app.config['SECRET_KEY'] = "dgiufhuhewhfuwhfuwbubwugbw"
 Bootstrap(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE")
-# postgresql://database_zyph_user:cTovrrBF4vyr8gm3PdxWglnpeE8xVZhr@dpg-civpcdunqql48o1dt8o0-a.oregon-postgres.render.com/database_zyph
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+with app.app_context():
+    db.create_all()
 
 class New_user(db.Model):
     __tablename__ = "users"
